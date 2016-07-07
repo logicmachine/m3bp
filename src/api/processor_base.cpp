@@ -74,5 +74,15 @@ ProcessorBase &ProcessorBase::max_concurrency(size_type new_concurrency){
 	return *this;
 }
 
+
+bool ProcessorBase::lazy_finalizable() const noexcept {
+	return m_impl->lazy_finalizable();
+}
+
+ProcessorBase &ProcessorBase::lazy_finalizable(bool is_lazy_finalizable){
+	m_impl->lazy_finalizable(is_lazy_finalizable);
+	return *this;
+}
+
 }
 

@@ -95,6 +95,10 @@ public:
 	virtual void commit_physical_tasks(ExecutionContext &context) override;
 
 
+	virtual PhysicalTaskIdentifier
+	dependency_terminal() const noexcept override;
+
+
 	virtual void thread_local_cancel(
 		ExecutionContext &context,
 		const Locality &locality) override;

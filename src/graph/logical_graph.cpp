@@ -65,17 +65,17 @@ void LogicalGraph::create_physical_tasks(ExecutionContext &context){
 		switch(e.physical_successor()){
 			case PhysicalSuccessor::ENTRY:
 				scheduler.add_dependency(
-					producer->terminal_task(),
+					producer->dependency_terminal(),
 					consumer->entry_task());
 				break;
 			case PhysicalSuccessor::BARRIER:
 				scheduler.add_dependency(
-					producer->terminal_task(),
+					producer->dependency_terminal(),
 					consumer->barrier_task());
 				break;
 			case PhysicalSuccessor::TERMINAL:
 				scheduler.add_dependency(
-					producer->terminal_task(),
+					producer->dependency_terminal(),
 					consumer->terminal_task());
 				break;
 		}

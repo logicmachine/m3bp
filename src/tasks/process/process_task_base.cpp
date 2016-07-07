@@ -388,6 +388,16 @@ void ProcessLogicalTaskBase::thread_local_finalize(
 }
 
 
+PhysicalTaskIdentifier
+ProcessLogicalTaskBase::dependency_terminal() const noexcept {
+	if(m_processor->lazy_finalizable()){
+		return barrier_task();
+	}else{
+		return terminal_task();
+	}
+}
+
+
 void ProcessLogicalTaskBase::create_thread_local_finalizers(
 	ExecutionContext &context)
 {

@@ -85,6 +85,10 @@ public:
 		return m_terminal_task;
 	}
 
+	virtual PhysicalTaskIdentifier dependency_terminal() const noexcept {
+		return m_terminal_task;
+	}
+
 
 	LogicalTaskBase &add_successor(
 		LogicalTaskPtr dst_task,

@@ -32,6 +32,7 @@ private:
 
 	size_type m_task_count;
 	size_type m_max_concurrency;
+	bool m_lazy_finalizable;
 
 public:
 	ProcessorBaseImpl()
@@ -39,6 +40,7 @@ public:
 		, m_output_ports()
 		, m_task_count(0)
 		, m_max_concurrency(std::numeric_limits<size_type>::max())
+		, m_lazy_finalizable(false)
 	{ }
 
 	ProcessorBaseImpl(
@@ -48,6 +50,7 @@ public:
 		, m_output_ports(output_ports)
 		, m_task_count(0)
 		, m_max_concurrency(std::numeric_limits<size_type>::max())
+		, m_lazy_finalizable(false)
 	{
 		bool has_one_to_one = false, has_scatter_gather = false;
 		for(const auto &ip : input_ports){
@@ -90,6 +93,16 @@ public:
 
 	ProcessorBaseImpl &max_concurrency(size_type new_concurrency){
 		m_max_concurrency = new_concurrency;
+		return *this;
+	}
+
+
+	bool lazy_finalizable() const noexcept {
+		return m_lazy_finalizable;
+	}
+
+	ProcessorBaseImpl &lazy_finalizable(bool is_lazy_finalizable){
+		m_lazy_finalizable = is_lazy_finalizable;
 		return *this;
 	}
 

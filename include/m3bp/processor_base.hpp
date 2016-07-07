@@ -123,6 +123,10 @@ public:
 	 */
 	size_type max_concurrency() const noexcept;
 
+	/**
+	 */
+	bool lazy_finalizable() const noexcept;
+
 
 	/**
 	 *  Callback for global initialization.
@@ -176,6 +180,15 @@ protected:
 	 */
 	ProcessorBase &max_concurrency(size_type new_concurrency);
 
+	/**
+	 *  Enables/Disables lazy finalization for this processor.
+	 *
+	 *  This function will be used in constructor or global_inititalize
+	 *  functions.
+	 *
+	 *  @return A reference to this processor.
+	 */
+	ProcessorBase &lazy_finalizable(bool is_lazy_finalizable);
 
 private:
 	friend class internal::ProcessorBaseImpl;
